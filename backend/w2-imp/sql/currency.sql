@@ -1,0 +1,6 @@
+CREATE TABLE currencies (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) UNIQUE NOT NULL,
+    ticker VARCHAR(50) UNIQUE NOT NULL,
+    address TEXT
+)
