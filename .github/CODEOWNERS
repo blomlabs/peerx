@@ -1,0 +1,8 @@
+# Backend Team owns backend files
+backend/ @blomlabs/backend-team
+
+# Frontend Team owns frontend files
+frontend/ @blomlabs/frontend-team
+
+# Team Lead has authority over everything
+* @blomlabs/team-lead
