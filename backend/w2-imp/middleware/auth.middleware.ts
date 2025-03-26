@@ -20,7 +20,7 @@ const authorize: NexuHandler = async (req, res, next) => {
     ) {
       token = req.headers.authorization.split(" ")[1];
     }
-    if (!token) return res.status(401).json({ message: "Unauthorized" });
+    if (!token) return res.status(401).json({ error: "Unauthorized" });
 
     const decoded = jwt.verify(
       token,
@@ -32,7 +32,7 @@ const authorize: NexuHandler = async (req, res, next) => {
       [decoded.id]
     );
 
-    if (!user[0]) return res.status(401).json({ message: "Unauthorized" });
+    if (!user[0]) return res.status(401).json({ error: "Unauthorized" });
 
     req.user = user[0] as User;
 
