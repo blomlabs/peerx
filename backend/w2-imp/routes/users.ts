@@ -8,4 +8,4 @@ const UserRoute = nexuRouter;
 UserRoute.get("/", authorizeAdmin, getUsers);
 UserRoute.get("/one/:username", validateParams(["username"]), getUser);
 
-export = UserRoute;
+export default UserRoute;

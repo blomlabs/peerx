@@ -8,8 +8,7 @@
     "noUnusedLocals": true,
     "noImplicitAny": true,
     "outDir": "./dist",
-    "skipLibCheck": true,
-    "types": ["nexujs"]
+    "skipLibCheck": true
   },
   "include": ["./**/*.ts"],
   "exclude": ["node_modules", "./nexu.config.ts"]

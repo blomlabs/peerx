@@ -7,4 +7,7 @@ export default defineConfig({
     private: String(process.env.NEXU_PRIVATE_KEY),
   },
   disableEncryption: true,
+  rateLimit: {
+    limit: 100,
+  },
 });

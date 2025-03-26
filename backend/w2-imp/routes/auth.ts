@@ -28,4 +28,4 @@ AuthRoutes.post(
   resetPassword
 );
 
-export = AuthRoutes;
+export default AuthRoutes;
