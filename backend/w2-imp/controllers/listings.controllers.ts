@@ -1,7 +1,8 @@
 import { NexuHandler } from "nexujs";
 import { assets } from "../utils/enums";
 import { throwIfInvalid } from "../utils/request";
-import { query } from "../config/neon-client";
+import { neonClient, query } from "../config/neon-client";
+import Err from "../config/err";
 
 export const createListing: NexuHandler = async (req, res, next) => {
   try {
@@ -89,6 +90,43 @@ export const createListing: NexuHandler = async (req, res, next) => {
       message: "Listing successfully created",
       order,
       data: listing[0],
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getListings: NexuHandler = async (req, res, next) => {
+  try {
+    const listings = await neonClient.useQueryLimit({
+      req,
+      table: "listings",
+      columns: [
+        "id",
+        "user_id",
+        "asset",
+        "amount",
+        "price_per_unit",
+        "minimum_limit",
+        "maximum_limit",
+        "listing_type",
+        "status",
+        "description",
+        "created_at",
+      ],
+    });
+
+    if (listings.length === 0) {
+      const error = new Err("No listing is found", "FetchError");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "",
+      length: listings.length,
+      data: listings,
     });
   } catch (error) {
     next(error);

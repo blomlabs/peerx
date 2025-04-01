@@ -1,8 +1,11 @@
-import { nexuRouter, validateFields } from "nexujs";
+import { validateFields, nexu } from "nexujs";
 import authorize from "../middleware/auth.middleware";
-import { createListing } from "../controllers/listings.controllers";
+import {
+  createListing,
+  getListings,
+} from "../controllers/listings.controllers";
 
-const ListingRoute = nexuRouter;
+const ListingRoute = nexu.router;
 
 ListingRoute.post(
   "/create-listing",
@@ -17,5 +20,7 @@ ListingRoute.post(
   authorize,
   createListing
 );
+
+ListingRoute.get("/all-listings", authorize, getListings);
 
 export default ListingRoute;

@@ -5,10 +5,10 @@ import UserRoute from "./routes/users";
 import TransactionRoute from "./routes/transaction";
 import LedgerRoute from "./routes/ledger";
 import OrderRoute from "./routes/order";
-import arcjetMiddleware from "./middleware/arcjet.middleware";
+// import arcjetMiddleware from "./middleware/arcjet.middleware";
 import ListingRoute from "./routes/listing";
 
-app.use(arcjetMiddleware);
+// app.use(arcjetMiddleware);
 
 app.get("/", (req, res) => {
   res.send(sendContent);
