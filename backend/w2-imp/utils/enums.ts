@@ -15,3 +15,10 @@ export const currencies = {
   usdt: "usdt",
   bnb: "bnb",
 };
+
+export const assets = ["USDT", "BTC", "BNB"];
+
+export const PaymentMethods = {
+  BANK_TRANSFER: ["PalmPay", "Opay"],
+  WALLET: "wallet",
+};

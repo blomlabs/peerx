@@ -16,7 +16,7 @@ const authorizeAdmin: NexuHandler = async (req, res, next) => {
       token = req.headers.authorization.split(" ")[1];
     }
 
-    if (!token) return res.status(401).json({ message: "Unauthorized" });
+    if (!token) return res.status(401).json({ error: "Unauthorized" });
 
     const decoded = jwt.verify(token, String(JWT_AUTH_SECRET)) as User;
 
@@ -26,7 +26,7 @@ const authorizeAdmin: NexuHandler = async (req, res, next) => {
     );
 
     if (!user[0].is_admin) {
-      return res.status(401).json({ message: "User is not an admin" });
+      return res.status(401).json({ error: "User is not an admin" });
     }
 
     req.user = user[0] as User;
