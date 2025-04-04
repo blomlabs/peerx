@@ -1,5 +1,6 @@
 import { defineRoutes } from "zoltra";
-import { getUsers } from "../controllers/users.controller";
+import { getUserById, getUsers } from "../controllers/users.controller";
+// import zoltraConfig from "../zoltra.config.js";
 
 const userRoutes = defineRoutes([
   {
@@ -7,6 +8,12 @@ const userRoutes = defineRoutes([
     path: "/api/users",
     handler: getUsers,
   },
+  {
+    method: "GET",
+    path: "",
+    handler: getUserById,
+  },
 ]);
 
+// export default userRoutes;
 export const routes = userRoutes;
