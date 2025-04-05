@@ -38,7 +38,7 @@ export const signIn: ZoltraHandler = async (req, res) => {
   } catch (error) {
     //   next(error);
     const err = error as RequestError;
-    res.status(500).json({
+    return res.status(500).json({
       message: err.name,
       error: err.message,
     });
