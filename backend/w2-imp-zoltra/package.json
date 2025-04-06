@@ -6,8 +6,8 @@
   "scripts": {
     "test": "null",
     "start": "tsc-watch --onsuccess \"node dist/server.js\"",
-    "dev": "zoltra dev:ts",
-    "pkg": "npm i ../../../zoltra/zoltra-0.1.0-alpha.1.6.tgz"
+    "dev": "cross-env NODE_OPTIONS='--experimental-require-module' zoltra dev:ts",
+    "pkg": "npm i ../../../zoltra/zoltra-0.1.0-alpha.1.7.tgz"
   },
   "keywords": [
     "server",
@@ -16,10 +16,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "zoltra": "^0.1.0-alpha.1.6"
+    "@neondatabase/serverless": "^1.0.0",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "zoltra": "^0.1.0-alpha.1.7"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.13.17",
+    "cross-env": "^7.0.3",
     "ts-node": "^10.9.2",
     "tsc-watch": "^6.2.1",
     "tslib": "^2.8.1",
