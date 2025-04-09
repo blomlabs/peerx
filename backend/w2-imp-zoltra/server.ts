@@ -1,5 +1,5 @@
-import cluster from "node:cluster";
-import { cpus } from "node:os";
+// import cluster from "node:cluster";
+// import { cpus } from "node:os";
 import { App, Logger } from "zoltra";
 
 const logger = new Logger("Server");
@@ -21,3 +21,4 @@ async function startServer() {
 }
 
 startServer();
+// console.log("Hello");
