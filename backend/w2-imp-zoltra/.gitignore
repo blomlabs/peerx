@@ -1,5 +1,5 @@
 .zoltra
 dist
 node_modules
-.env
+*.env*
 read.js

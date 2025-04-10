@@ -7,7 +7,6 @@ export const routes = defineRoutes([
     path: "/v1/auth/sign-in",
     method: "POST",
     handler: signIn,
-
     middleware: [validateFields(["email", "password"])],
   },
 ]);
