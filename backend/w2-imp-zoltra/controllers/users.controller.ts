@@ -1,4 +1,4 @@
-import { Logger, ZoltraHandler } from "zoltra";
+import { Logger, RequestError, ZoltraHandler } from "zoltra";
 
 const logger = new Logger("UserController");
 
@@ -19,7 +19,7 @@ export const userService = {
   },
 };
 
-export const getUsers: ZoltraHandler = async (req, res) => {
+export const getUsers: ZoltraHandler = async (req, res, next) => {
   try {
     const users = await userService.getAllUsers();
     res.status(200).json(users);
@@ -29,21 +29,26 @@ export const getUsers: ZoltraHandler = async (req, res) => {
   }
 };
 
-export const getUserById: ZoltraHandler = async (req, res) => {
+export const getUserById: ZoltraHandler = async (req, res, next) => {
   try {
     const userId = req.params?.id;
     if (!userId) {
-      return res.status(400).json({ error: "User ID is required" });
+      // return res.status(400).json({ error: "User ID is required" });
+      const error = new RequestError("User ID is required", "UserFetchError");
+      error.statusCode = 400;
+      throw error;
     }
 
     const user = await userService.getUserById(userId);
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      const error = new RequestError("User not found", "UserFetchError");
+      error.statusCode = 404;
+      throw error;
+      // return res.status(404).json({ error: "User not found" });
     }
 
     res.status(200).json(user);
   } catch (error) {
-    logger.error("Failed to get user", error as Error);
-    res.status(500).json({ error: "Internal Server Error" });
+    next(error);
   }
 };
