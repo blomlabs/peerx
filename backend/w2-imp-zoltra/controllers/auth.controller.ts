@@ -2,8 +2,8 @@ import { signToken } from "../utils/jwt";
 import { comparePassword } from "../utils/password";
 import { RequestError, ZoltraHandler } from "zoltra";
 import { query } from "../config/neon-client";
-//
-export const signIn: ZoltraHandler = async (req, res) => {
+
+export const signIn: ZoltraHandler = async (req, res, next) => {
   const { email, password } = req.body;
   try {
     const userExits = await query(
@@ -36,11 +36,6 @@ export const signIn: ZoltraHandler = async (req, res) => {
       token,
     });
   } catch (error) {
-    //   next(error);
-    const err = error as RequestError;
-    return res.status(500).json({
-      message: err.name,
-      error: err.message,
-    });
+    next(error);
   }
 };
