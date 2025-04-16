@@ -11,12 +11,10 @@ export const arcjetPlugin = createPlugin({
 
         if (decision.isDenied()) {
           if (decision.reason.isRateLimit())
-            return res
-              .status(429)
-              .json({
-                error: "Rate limit exceeded",
-                message: "Too Many Requests",
-              });
+            return res.status(429).json({
+              error: "Rate limit exceeded",
+              message: "Too Many Requests",
+            });
           if (decision.reason.isBot())
             return res
               .status(403)
@@ -29,10 +27,7 @@ export const arcjetPlugin = createPlugin({
 
         next();
       } catch (error) {
-        const err = new Err(
-          (error as Error).message,
-          "Arcjet Middleware Error"
-        );
+        const err = new Err((error as Error).message, "ArcjetPluginError");
         err.statusCode = 500;
         next(error);
       }
