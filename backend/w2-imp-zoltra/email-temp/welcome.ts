@@ -1,0 +1,124 @@
+export const WelcomeMail = (name: string) => `    <div
+      style="
+        font-family: 'Poppins', Arial, sans-serif;
+        text-align: center;
+        padding: 40px 20px;
+        background: #121212;
+        color: #ffffff;
+      "
+    >
+      <div
+        style="
+          margin: auto;
+          /* background: #1e1e1e; */
+          padding: 2px;
+          border-radius: 12px;
+          width: 100%;
+        "
+      >
+        <img
+          src="https://res.cloudinary.com/dv4mozbaz/image/upload/v1741549470/lgl5dyetcn1tmr5btoug.png"
+          alt="Peerx Logo"
+          style="width: 100px; margin-bottom: 0"
+        />
+
+        <h1 style="font-weight: 500; font-size: 32px; margin: 10px 0">
+          Welcome to PeerX, <span style="color: #50c878">${name}!</span> 🚀
+        </h1>
+
+        <p style="color: #ccc; font-size: 16px; line-height: 1.7">
+          We're excited to have you on board at
+          <strong>Peerx</strong>—the
+          <strong>next-gen peer-to-peer platform</strong> built for seamless
+          <strong>connections, trades, and collaborations.</strong>
+        </p>
+
+        <!-- Call to Action Button -->
+        <a
+          href="https://app.peerx.com/dashboard"
+          target="_blank"
+          style="
+            display: inline-block;
+            margin-top: 20px;
+            background: #34c759;
+            color: #ffffff;
+            padding: 14px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+          "
+        >
+          Get Started Now
+        </a>
+
+        <p style="color: #bbb; font-size: 14px; margin-top: 25px">
+          Need help? Contact our support team at
+          <a
+            href="mailto:support@peerx.com"
+            style="color: #50c878; text-decoration: none"
+            >support@peerx.com</a
+          >.
+        </p>
+
+        <hr
+          style="
+            border: none;
+            border-top: 1px solid #444;
+            margin: 30px auto;
+            width: 80%;
+          "
+        />
+
+        <!-- Social Media Links -->
+        <p style="font-size: 14px; color: #aaa">Follow us on social media</p>
+        <div style="margin-top: 10px">
+          <a
+            href="https://twitter.com/peerx"
+            target="_blank"
+            style="margin: 0 10px; text-decoration: none"
+          >
+            <img
+              src="https://img.icons8.com/?size=100&id=rHBHb9TRpKaI&format=png&color=ffffff"
+              width="26"
+            />
+          </a>
+          <a
+            href="https://instagram.com/peerx"
+            target="_blank"
+            style="margin: 0 10px; text-decoration: none"
+          >
+            <img
+              src="https://img.icons8.com/?size=100&id=32292&format=png&color=ffffff"
+              width="26"
+            />
+          </a>
+          <a
+            href="https://linkedin.com/company/peerx"
+            target="_blank"
+            style="margin: 0 10px; text-decoration: none"
+          >
+            <img
+              src="https://img.icons8.com/?size=100&id=114445&format=png&color=000000"
+              width="26"
+            />
+          </a>
+          <a
+            href="https://facebook.com/peerx"
+            target="_blank"
+            style="margin: 0 10px; text-decoration: none"
+          >
+            <img
+              src="https://img.icons8.com/?size=100&id=118497&format=png&color=ffffff"
+              width="26"
+            />
+          </a>
+        </div>
+
+        <p style="color: #777; font-size: 12px; margin-top: 15px">
+          You're receiving this email because you signed up for Peerx. If this
+          wasn't you, please ignore this email.
+        </p>
+      </div>
+    </div>`;

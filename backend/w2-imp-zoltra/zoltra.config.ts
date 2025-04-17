@@ -1,8 +1,7 @@
-import { ZoltraConfig, zoltraConfig } from "zoltra";
+import { zoltraConfig } from "zoltra";
 
 export default zoltraConfig({
-  PORT: 8000,
+  PORT: 5000,
   LOG_LEVEL: "info",
-  // NODE_ENV: String(process.env.NODE_ENV) as ZoltraConfig["NODE_ENV"],
   NODE_ENV: "development",
 });

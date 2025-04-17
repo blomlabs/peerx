@@ -5,9 +5,11 @@
   "main": "dist/server.js",
   "scripts": {
     "test": "null",
-    "start": "tsc-watch --onsuccess \"node dist/server.js\"",
-    "dev": "zoltra dev:ts",
-    "pkg": "npm i ../../../zoltra/zoltra-0.1.0-alpha.1.13.tgz"
+    "start": "cross-env NODE_OPTIONS='--experimental-require-module' zoltra start:ts",
+    "dev": "cross-env NODE_OPTIONS='--experimental-require-module' zoltra dev:ts",
+    "pkg": "npm i ../../../zoltra/zoltra-0.1.0-beta.1.0.tgz",
+    "gen-auth": "node ./scripts/gen-secret.mjs",
+    "update": "zoltra update --deps"
   },
   "keywords": [
     "server",
@@ -18,9 +20,11 @@
   "dependencies": {
     "@arcjet/node": "^1.0.0-beta.5",
     "@neondatabase/serverless": "^1.0.0",
+    "@types/nodemailer": "^6.4.17",
     "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.2",
-    "zoltra": "^0.1.0-beta.1"
+    "nodemailer": "^6.10.1",
+    "zoltra": "file:../../../zoltra/zoltra-0.1.0-beta.1.0.tgz"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

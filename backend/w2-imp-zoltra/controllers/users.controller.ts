@@ -1,53 +1,54 @@
-import { Logger, RequestError, ZoltraHandler } from "zoltra";
-
-const logger = new Logger("UserController");
-
-const users = [
-  { id: "1", name: "John Doe", email: "john@example.com" },
-  { id: "2", name: "Jane Smith", email: "jane@example.com" },
-];
-
-export const userService = {
-  async getAllUsers() {
-    logger.debug("Fetching all users");
-    return users;
-  },
-
-  async getUserById(id: string) {
-    logger.debug(`Fetching user with ID: ${id}`);
-    return users.find((user) => user.id === id);
-  },
-};
+import { neonClient, query } from "../config/neon-client";
+import { RequestError as Err, ZoltraHandler } from "zoltra";
 
 export const getUsers: ZoltraHandler = async (req, res, next) => {
   try {
-    const users = await userService.getAllUsers();
-    res.status(200).json(users);
+    const users = await neonClient.useQueryLimit({
+      req,
+      table: "users",
+      columns_list:
+        "firstname, lastname, email, username, address, balance, transactions, id, email_confirmed, created_at ",
+    });
+
+    if (users.length === 0) {
+      const error = new Err("No user found", "UserError");
+      error.statusCode = 404;
+      throw error;
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Users successfully fetched",
+      length: users.length,
+      data: users,
+    });
   } catch (error) {
-    logger.error("Failed to get users", error as Error);
-    res.status(500).json({ error: "Internal Server Error" });
+    next(error);
   }
 };
 
-export const getUserById: ZoltraHandler = async (req, res, next) => {
+export const getUser: ZoltraHandler = async (req, res, next) => {
+  const { username } = req.params;
   try {
-    const userId = req.params?.id;
-    if (!userId) {
-      // return res.status(400).json({ error: "User ID is required" });
-      const error = new RequestError("User ID is required", "UserFetchError");
-      error.statusCode = 400;
-      throw error;
-    }
+    const user = await query(
+      `
+        SELECT firstname, lastname, email, username, address, balance, transactions, id, email_confirmed, created_at
+        FROM users
+        WHERE username = $1`,
+      [username]
+    );
 
-    const user = await userService.getUserById(userId);
-    if (!user) {
-      const error = new RequestError("User not found", "UserFetchError");
+    if (user.length === 0) {
+      const error = new Err("User not found", "UserNotFound");
       error.statusCode = 404;
       throw error;
-      // return res.status(404).json({ error: "User not found" });
     }
 
-    res.status(200).json(user);
+    res.status(200).json({
+      success: true,
+      message: "User successfully fetched",
+      data: user[0],
+    });
   } catch (error) {
     next(error);
   }
