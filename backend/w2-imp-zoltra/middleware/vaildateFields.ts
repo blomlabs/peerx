@@ -17,9 +17,21 @@ type Middleware = (
  * @returns {Function} A middleware function for validating required fields in the request body.
  *
  * @example
- * app.post('/submit', validateFields(['name', 'email']), (req, res) => {
- *   res.send('Form submitted successfully!');
- * });
+ * export const routes = defineRoutes([
+ *  {
+      path: "/v1/auth/sign-up",
+      method: "POST",
+      handler: registerUser,
+      middleware: [
+      validateFields([
+        "email",
+        "firstname",
+        "lastname",
+        "password",
+        "username",
+      ])]
+    },
+ * ])
  */
 const validateFields =
   (requiredFields: string[]): Middleware =>

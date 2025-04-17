@@ -1,6 +1,11 @@
 import { defineRoutes } from "zoltra";
-import { signIn } from "../controllers/auth.controller";
+import {
+  registerUser,
+  resetPassword,
+  signIn,
+} from "../controllers/auth.controller";
 import validateFields from "../middleware/vaildateFields";
+import validateEmail from "../middleware/vaildateEmail";
 
 export const routes = defineRoutes([
   {
@@ -8,5 +13,26 @@ export const routes = defineRoutes([
     method: "POST",
     handler: signIn,
     middleware: [validateFields(["email", "password"])],
+  },
+  {
+    path: "/v1/auth/sign-up",
+    method: "POST",
+    handler: registerUser,
+    middleware: [
+      validateFields([
+        "email",
+        "firstname",
+        "lastname",
+        "password",
+        "username",
+      ]),
+      validateEmail,
+    ],
+  },
+  {
+    path: "/v1/auth/reset-password",
+    method: "POST",
+    handler: resetPassword,
+    middleware: [validateFields(["email"])],
   },
 ]);

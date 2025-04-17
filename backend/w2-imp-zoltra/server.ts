@@ -17,7 +17,7 @@ async function startServer() {
     const app = new App();
 
     app.register(arcjetPlugin);
-    app.register(encryptRes);
+    // app.register(encryptRes);
     app.register(errorPlugin);
 
     await app.start();

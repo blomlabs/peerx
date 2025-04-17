@@ -1,17 +1,18 @@
 import { defineRoutes } from "zoltra";
-import { getUserById, getUsers } from "../controllers/users.controller";
+import { getUser, getUsers } from "../controllers/users.controller";
+import authorizeAdmin from "../middleware/admin.middleware";
 
 const userRoutes = defineRoutes([
   {
     method: "GET",
-    path: "/api/users",
+    path: "/v1/users",
     handler: getUsers,
-    middleware: [],
+    middleware: [authorizeAdmin],
   },
   {
     method: "GET",
-    path: "/api/users/:id",
-    handler: getUserById,
+    path: "/v1/users/one/:username",
+    handler: getUser,
   },
 ]);
 
