@@ -22,6 +22,7 @@ app.use("/v1/orders", OrderRoute);
 app.use("/v1/listings", ListingRoute);
 
 app.use(errorMiddleWare);
+
 // app.use(ErrorLogger);
 
 export default app;

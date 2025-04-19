@@ -1,10 +1,4 @@
-import { ZoltraRequest, ZoltraResponse } from "zoltra";
-
-type Middleware = (
-  req: ZoltraRequest,
-  res: ZoltraResponse,
-  next: () => Promise<void>
-) => Promise<void>;
+import { ZoltraHandler } from "zoltra";
 
 /**
  * Middleware function to validate the presence of required fields in the request body.
@@ -34,7 +28,7 @@ type Middleware = (
  * ])
  */
 const validateFields =
-  (requiredFields: string[]): Middleware =>
+  (requiredFields: string[]): ZoltraHandler =>
   async (req, res, next) => {
     const missingFields = requiredFields.filter(
       (field) => !req.body[field] || req.body[field].toString().trim() === ""

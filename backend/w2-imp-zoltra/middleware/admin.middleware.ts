@@ -7,7 +7,6 @@ import { ZoltraHandler, RequestError as Err } from "zoltra";
 const authorizeAdmin: ZoltraHandler = async (req, res, next) => {
   try {
     let token;
-
     if (
       req.headers.authorization &&
       req.headers.authorization.startsWith("Bearer")
@@ -15,7 +14,8 @@ const authorizeAdmin: ZoltraHandler = async (req, res, next) => {
       token = req.headers.authorization.split(" ")[1];
     }
 
-    if (!token) return res.status(401).json({ error: "Unauthorized" });
+    if (!token)
+      return res.status(401).json({ error: "Unauthorized", sucess: false });
 
     const decoded = jwt.verify(token, String(JWT_AUTH_SECRET)) as User;
 
@@ -32,9 +32,7 @@ const authorizeAdmin: ZoltraHandler = async (req, res, next) => {
 
     next();
   } catch (error) {
-    const err = new Err(`${(error as Error).message}`, "Error");
-    err.statusCode = 500;
-    throw err;
+    next(error);
   }
 };
 

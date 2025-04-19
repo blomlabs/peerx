@@ -1,8 +1,7 @@
 // import cluster from "node:cluster";
 // import { cpus } from "node:os";
-import { App, Logger } from "zoltra";
+import { App, CorsPlugin, Logger } from "zoltra";
 import { errorPlugin } from "./plugins/error";
-import { encryptRes } from "./plugins/encrypt-response";
 import { arcjetPlugin } from "./plugins/arcjet";
 
 const logger = new Logger("Server");
@@ -16,6 +15,7 @@ async function startServer() {
     // } else {//
     const app = new App();
 
+    app.register(CorsPlugin());
     app.register(arcjetPlugin);
     // app.register(encryptRes);
     app.register(errorPlugin);
