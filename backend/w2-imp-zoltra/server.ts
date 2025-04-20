@@ -12,7 +12,7 @@ async function startServer() {
     //   for (let i = 0; i < cpus().length; i++) {
     //     cluster.fork();
     //   }
-    // } else {//
+    // } else {
     const app = new App();
 
     app.register(CorsPlugin());

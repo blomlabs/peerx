@@ -25,7 +25,9 @@ const authorizeAdmin: ZoltraHandler = async (req, res, next) => {
     );
 
     if (!user[0].is_admin) {
-      return res.status(401).json({ error: "User is not an admin" });
+      return res
+        .status(401)
+        .json({ error: "User is not an admin", success: false });
     }
 
     req.user = user[0] as User;
