@@ -4,7 +4,6 @@
   "description": "web2",
   "main": "dist/server.js",
   "scripts": {
-    "test": "null",
     "start": "cross-env NODE_OPTIONS='--experimental-require-module' zoltra start:ts",
     "dev": "cross-env NODE_OPTIONS='--experimental-require-module' zoltra dev:ts",
     "pkg": "npm i ../../../zoltra/zoltra-0.1.0-beta.2.tgz",
