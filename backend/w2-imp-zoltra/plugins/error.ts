@@ -1,7 +1,7 @@
 import { createErrorPlugin, Logger } from "zoltra";
 
 export const errorPlugin = createErrorPlugin({
-  name: "error",
+  name: "error-plugin",
   handler: async (err, req, res, next) => {
     const logger = new Logger("ErrorPlugin");
 

@@ -3,7 +3,7 @@ import { RequestError as Err } from "zoltra";
 import aj from "../config/acrjet";
 
 export const arcjetPlugin = createPlugin({
-  name: "arcjet-node",
+  name: "arcjet-node/plugin",
   install(app) {
     app.addMiddleware(async (req, res, next) => {
       try {
